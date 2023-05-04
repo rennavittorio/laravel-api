@@ -10,7 +10,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::with('type', 'technologies')->paginate(3);
+        $projects = Project::paginate(3);
 
         return response()->json([
             'projects' => $projects,
@@ -19,7 +19,7 @@ class ProjectController extends Controller
 
     public function show($slug)
     { //questo slug lo riceve dalla call client
-        $project = Project::with('type', 'technologies')->where('slug', $slug)->first();
+        $project = Project::with('technologies.projects')->where('slug', $slug)->first();
 
         //controlliamo se esiste il post
         if ($project) {

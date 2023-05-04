@@ -11,6 +11,8 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes; //ATTENZIONE: importare questo per attivare softDelete
 
+    protected $with = ['type', 'technologies'];
+
     public $table = 'projects';
 
     protected $fillable = [
